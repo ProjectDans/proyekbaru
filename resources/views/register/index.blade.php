@@ -1,9 +1,12 @@
 @extends('layout_lte.app')
 @section('content')
+<div class="text-center" style="padding: 25px">
+  <h3 style="color: white;">Registrasi - User</h3>
+</div>
 <div class="register-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="" class="h1"><b>Admin</b>LTE</a>
+        <a href="" class="h1"><b>SIPODA</b></a>
       </div>
       <div class="card-body">
         <p class="login-box-msg">Pendaftaran Akun Baru!</p>
@@ -34,6 +37,13 @@
               </div>
             </div>
           </div>
+          <div class="input-group mb-3">
+            <select name="level" class="form-control">
+              <option selected disabled>Pilih Akses Akun</option>
+              <option value="bendahara">Bendahara</option>
+              <option value="sekretaris">Sekretaris</option>
+            </select>            
+          </div>
           <div class="row">
             </div>
             <!-- /.col -->
@@ -42,7 +52,9 @@
             </div>
             <!-- /.col -->
           </div>
-          <a href="{{route('login')}}" class="text-center">I already have a membership</a>
+          <div class="card-footer">
+            <p>Sudah Punya Akun?</p><a href="{{route('login')}}" class="text-center">Login</a>
+          </div>
           <br>
         </form>
    

@@ -31,8 +31,8 @@
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->jabatan}}</td>
                                     <td></td>
-                                    <td><a href="" class="btn btn-sm btn-success">Edit</a></td>
-                                    <td><a href="" class="btn btn-sm btn-danger">Delete</a></td>
+                                    <td><a href="{{route('editdatakaryawan', $item->id)}}" class="btn btn-sm btn-success">Edit</a></td>
+                                    <td><a href="{{route('deletedatakaryawan', $item->id)}}" class="btn btn-sm btn-danger">Delete</a></td>
                                 </tr>                                    
                                 @endforeach
                             </tbody>

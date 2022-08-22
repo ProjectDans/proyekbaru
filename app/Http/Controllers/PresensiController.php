@@ -59,7 +59,7 @@ class PresensiController extends Controller
                 'jammasuk' => $localtime,
             ]);
         }
-         
+        
 
         return redirect('presensimasuk');
     }
@@ -84,6 +84,17 @@ class PresensiController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function halamanrekap()
+    {
+        return view('presensi.halaman-rekap');
+    }
+
+    public function tampildatakeseluruhan($tglawal, $tglakhir)
+    {
+        $presensi = Presensi::with('user')->whereBetween('tgl',[$tglawal, $tglakhir])->orderBy('tgl','asc')->get();
+        return view('presensi.rekap',compact('presensi'));
     }
 
     public function presensipulang(){

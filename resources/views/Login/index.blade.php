@@ -1,13 +1,15 @@
 @extends('layout_lte.app')
 @section('content')
-
-  <!-- /.login-logo -->
+<!-- /.login-logo -->  
+<div class="text-center" style="padding: 25px">  
+    <h3 style="color: white;">Login - Autentikasi</h3>
+  </div>
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="" class="h1"><b>SIPODA</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Sistem Informasi Pengolahan Data</p>
 
       <form action="{{ route('postlogin') }}" method="post">
         @csrf

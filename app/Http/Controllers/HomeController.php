@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Iuran;
+use App\Models\Pedagang;
+use App\Models\Karyawan;
+use App\Models\Pengumuman;
+use App\Models\Keraton;
+use App\Models\Alunalun;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +20,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $countIuran = Iuran::count();
+        $countPedagang = Pedagang::count();
+        $countKaryawan = Karyawan::count();
+        $countKaryawan = Karyawan::count();
+        $countProfile = User::count();
+        $countKeraton = Keraton::count();
+        $countAlunalun = Alunalun::count();
+
+        $sudahbayar = Iuran::onlyTrashed()->get();
+        $pengumuman = Pengumuman::first();
+        $dtProfile = User::all();
+        $dtIuran = Iuran::all();
+        return view('home', compact(
+            'dtProfile', 'countProfile', 'countKaryawan', 'pengumuman', 'dtIuran', 'countIuran', 'countPedagang', 'countKeraton', 'countAlunalun', 'sudahbayar'
+        ));
     }
 
     /**

@@ -14,9 +14,10 @@ class DataProfileController extends Controller
      */
     public function index()
     {
+        $countProfile = User::count();
         $dtProfile = User::all();
         return view('profile.index', compact(
-            'dtProfile'
+            'dtProfile','countProfile'
         ));
     }
 
@@ -78,7 +79,7 @@ class DataProfileController extends Controller
         $dtProfile = User::findorfail($id);
         $dtProfile->update($request->all());
 
-        return redirect('dataprofile');
+        return redirect('dataprofile')->with('success', 'Akses Akun Berhasil Diupdate!');
     }
 
     /**
@@ -89,6 +90,8 @@ class DataProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dtProfile = User::findorfail($id);
+        $dtProfile->delete();
+        return redirect('dataprofile')->with('danger', 'Data Berhasil Dihapus!');
     }
 }

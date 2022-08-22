@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Paper Dashboard 2 by Creative Tim
+    Sistem Informasi Pengolahan Data &diams; Ikatan Pedagang Kaki Lima
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -52,12 +52,12 @@
       <div class="logo">
         <a href="https://www.creative-tim.com" class="simple-text logo-mini">
           <div class="logo-image-small">
-            <img src="../assets/img/logo-small.png">
+            <img src="{{asset('gambar/logo.jpg')}}">
           </div>
           <!-- <p>CT</p> -->
         </a>
         <a href="https://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+          Sipoda &diams; IPKL
           <!-- <div class="logo-image-big">
             <img src="../assets/img/logo-big.png">
           </div> -->
@@ -83,10 +83,29 @@
               <p>Presensi Pulang</p>
             </a>
           </li>
+          @if (auth()->user()->level == "admin")
+          <li>
+            <a href="{{route('filter-data')}}">
+              <i class="nc-icon nc-single-copy-04"></i>
+              <p>Rekap Data Presensi</p>
+            </a>
+          </li>
           <li>
             <a href="{{route('dataprofile')}}">
               <i class="nc-icon nc-single-02"></i>
               <p>Data Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('pengumuman') }}">
+              <i class="nc-icon nc-paper"></i>
+              <p>Pengumuman</p>
+            </a>
+          </li>
+          <li class="active-pro">
+            <a href="{{route('adminkategoriiuran')}}">
+              <i class="nc-icon nc-tag-content"></i>
+              <p>Data Kategori Iuran</p>
             </a>
           </li>
           <li>
@@ -95,6 +114,49 @@
               <p>Data Karyawan</p>
             </a>
           </li>
+          @endif
+          @if(auth()->user()->level == "sekretaris")
+          <li>
+            <a href="{{route('pedagangkeraton')}}">
+              <i class="nc-icon nc-app"></i>
+              <p>Data Pedagang</p>
+              <p>Wilayah Keraton</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('pedagangalunalun')}}">
+              <i class="nc-icon nc-app"></i>
+              <p>Data Pedagang</p>
+              <p>Wilayah Alun-Alun</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{route('wilayah')}}">
+              <i class="nc-icon nc-map-big"></i>
+              <p>Data Wilayah</p>
+            </a>
+          </li>          
+          {{-- <li>
+            <a href="{{route('pegawai')}}">
+              <i class="nc-icon nc-map-big"></i>
+              <p>Data Pegawai</p>
+            </a>
+          </li>           --}}
+          @endif
+          @if(auth()->user()->level == "bendahara")
+          <li class="active-pro">
+            <a href="{{route('iuran')}}">
+              <i class="nc-icon nc-money-coins"></i>
+              <p>Data Iuran</p>
+            </a>
+          </li>
+          <li class="active-pro">
+            <a href="{{route('kategoriiuran')}}">
+              <i class="nc-icon nc-tag-content"></i>
+              <p>Kategori Iuran</p>
+            </a>
+          </li>
+          @endif
           <li class="active-pro">
             <a href="{{ route('logout') }}">
               <i class="nc-icon nc-button-power"></i>
@@ -116,7 +178,7 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Selamat Datang, {{ auth()->user()->name }}</a>
+            <a class="navbar-brand" href="javascript:;">Selamat Datang, {{ auth()->user()->name }} ({{auth()->user()->level }})</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -189,28 +251,17 @@
       <div class="content">
         @yield('content')
       </div>
-      <footer class="footer footer-black  footer-white ">
-        <div class="container-fluid">
-          <div class="row">
-            <nav class="footer-nav">
-              <ul>
-                <li><a href="https://www.creative-tim.com" target="_blank">Creative Tim</a></li>
-                <li><a href="https://www.creative-tim.com/blog" target="_blank">Blog</a></li>
-                <li><a href="https://www.creative-tim.com/license" target="_blank">Licenses</a></li>
-              </ul>
-            </nav>
-            <div class="credits ml-auto">
-              <span class="copyright">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-              </span>
-            </div>
-          </div>
-        </div>
+      <footer class="main-footer">
+        <span class="copyright">
+          <marquee>
+            <strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> &diams; Sistem Informasi Pengolahan Data - Ikatan Pedagang Kaki Lima</strong>
+          </marquee>
+        </span>
       </footer>
     </div>
   </div>
+  <!-- ck-editor -->
+  @yield('ck-editor')
   <!--   Core JS Files   -->
   <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
   <script src="{{asset('assets/js/core/popper.min.js')}}"></script>

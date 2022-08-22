@@ -33,12 +33,12 @@ class LoginController extends Controller
     {
         User::create([
             'name' => $request->name,
-            'level' => 'bendahara',
+            'level' => $request->level,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'remember_token' => Str::random(60),
         ]);
 
-        return view('welcome');
+        return redirect('/login')->with('success', 'Berhasil Melakukan Daftar Akun, Silahkan Login!');
     }
 }

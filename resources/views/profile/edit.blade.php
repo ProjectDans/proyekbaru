@@ -13,7 +13,7 @@
         </div>
         <div class="form-group">
           <label>Akses Akun</label>
-          <input class="form-control" placeholder="ubah akses akun" name="level">
+          <input class="form-control" placeholder="ubah akses akun" value="{{$dtProfile->level}}" name="level">
         </div>
       </div>
       <div class="modal-footer">

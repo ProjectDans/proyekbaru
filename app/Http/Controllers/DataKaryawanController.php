@@ -69,7 +69,10 @@ class DataKaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dtKaryawan = Karyawan::findorfail($id);
+        return view('karyawan.edit', compact(
+            'dtKaryawan'
+        ));
     }
 
     /**
@@ -81,7 +84,9 @@ class DataKaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dtKaryawan = Karyawan::findorfail($id);
+        $dtKaryawan->update($request->all());
+        return redirect('datakaryawan')->with('success', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -92,6 +97,8 @@ class DataKaryawanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dtKaryawan = Karyawan::findorfail($id);
+        $dtKaryawan->delete();
+        return redirect('datakaryawan')->with('success', 'Data Berhasil Dihapus');
     }
 }
